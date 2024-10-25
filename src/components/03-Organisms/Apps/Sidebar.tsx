@@ -3,33 +3,13 @@
 import Link from "next/link";
 import { useState, useEffect, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faHouse,
-	faCalendarAlt,
-	faHeart,
-	faSyringe,
-	faChartColumn,
-	faUsers,
-	faScrewdriverWrench,
-	faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "@/redux/features/app.slice";
 import { RootState } from "@/redux/store";
-
-interface Submenu {
-	label: string;
-	url: string;
-}
-
-interface Menu {
-	label: string;
-	url?: string;
-	icon: JSX.Element;
-	submenus?: Submenu[];
-}
+import { menus } from "@/data/menus";
 
 export default function Sidebar() {
 	const dispatch = useDispatch();
@@ -59,65 +39,6 @@ export default function Sidebar() {
 	const toggleSubmenu = (index: number) => {
 		setOpenMenu(openMenu === index ? null : index);
 	};
-
-	const menus: Menu[] = [
-		{
-			label: "Dashboard",
-			url: "/",
-			icon: <FontAwesomeIcon icon={faHouse} />,
-		},
-		{
-			label: "Reservasi",
-			icon: <FontAwesomeIcon icon={faCalendarAlt} />,
-			submenus: [
-				{ label: "Data Tes HIV", url: "/reservasi/tes-hiv" },
-				{ label: "Data PrEP", url: "/reservasi/prep" },
-				{ label: "Data Refill ARV", url: "/reservasi/refill-arv" },
-				{ label: "Data Viral Load", url: "/reservasi/viral-load" },
-			],
-		},
-		{
-			label: "Notifikasi Pasangan",
-			icon: <FontAwesomeIcon icon={faHeart} />,
-			submenus: [
-				{ label: "Tautan Referal", url: "/np/referal" },
-				{ label: "Data Semua", url: "/np/semua" },
-				{ label: "Data NP Layanan", url: "/np/layanan" },
-				{ label: "Data NP Komunitas", url: "/np/komunitas" },
-			],
-		},
-		{
-			label: "Skrining HIV Mandiri",
-			url: "/skrining-hiv-mandiri",
-			icon: <FontAwesomeIcon icon={faSyringe} />,
-		},
-		{
-			label: "Info PrEP",
-			url: "/info-prep",
-			icon: <FontAwesomeIcon icon={faCalendarAlt} />,
-		},
-		{
-			label: "Cascade",
-			icon: <FontAwesomeIcon icon={faChartColumn} />,
-			submenus: [
-				{ label: "Total", url: "/cascade/total" },
-				{ label: "Tes HIV", url: "/cascade/tes-hiv" },
-				{ label: "PrEP", url: "/cascade/prep" },
-				{ label: "Refill ARV", url: "/cascade/refill-arv" },
-				{ label: "Viral Load", url: "/cascade/viral-load" },
-			],
-		},
-		{
-			label: "Users",
-			url: "/users",
-			icon: <FontAwesomeIcon icon={faUsers} />,
-		},
-		{
-			label: "Pengaturan",
-			icon: <FontAwesomeIcon icon={faScrewdriverWrench} />,
-			submenus: [{ label: "Fasyankes", url: "/pengaturan/fasyankes" }],
-		},
-	];
 
 	return (
 		<Fragment>
@@ -185,7 +106,9 @@ export default function Sidebar() {
 														: "text-dark-icon group-hover:text-blue-500"
 												}`}
 											>
-												{menu.icon}
+												<FontAwesomeIcon
+													icon={menu.icon}
+												/>
 											</span>
 											<span className="ml-4">
 												{menu.label}
@@ -200,7 +123,9 @@ export default function Sidebar() {
 														: "text-dark-icon group-hover:text-blue-500"
 												}`}
 											>
-												{menu.icon}
+												<FontAwesomeIcon
+													icon={menu.icon}
+												/>
 											</span>
 											<span className="ml-4">
 												{menu.label}
@@ -209,7 +134,7 @@ export default function Sidebar() {
 									)}
 									{menu.submenus && (
 										<span
-											className={` ${
+											className={`${
 												openMenu === index
 													? "rotate-90"
 													: ""
@@ -247,7 +172,7 @@ export default function Sidebar() {
 															href={submenu.url}
 															className="flex items-center hover:text-white"
 														>
-															<span className="mr-4 group-hover:text-blue-500">
+															<span className="mr-2">
 																&bull;
 															</span>
 															{submenu.label}

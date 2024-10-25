@@ -27,7 +27,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 						</div>
 
 						{/* Main content dengan overflow auto jika konten melebihi area */}
-						<main className="flex-1 p-7 overflow-auto"></main>
+						{/*<main className="flex-1 p-7 overflow-auto">
+							{children}
+						</main>*/}
 					</div>
 				</div>
 

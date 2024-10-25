@@ -1,8 +1,7 @@
 "use client";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
-	const router = useRouter();
 	const pathname = usePathname();
 
 	const handleDuplicate = () => {
