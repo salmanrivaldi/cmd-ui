@@ -5,6 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'layout': "#F2F3F8",
         'red-active': '#DB1430',
         'dark-hover': '#2f2e3c',
         'dark-icon': '#3a3a5d',
