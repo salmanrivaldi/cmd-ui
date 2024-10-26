@@ -4,30 +4,46 @@
 
 .daterangepicker td.active,
 .daterangepicker td.active:hover {
-  background-color: #5867DD !important;
-  color: #fff !important;
+	background-color: #5867dd !important;
+	color: #fff !important;
 }
 
 .daterangepicker td:hover {
-  background-color: #e7e7e7 !important;
+	background-color: #e7e7e7 !important;
 }
 
 .daterangepicker {
-  font-family: 'Poppins', sans-serif !important;
-  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1) !important;
+	font-family: "Poppins", sans-serif !important;
+	box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
 .daterangepicker th {
-  font-weight: 500 !important;
+	font-weight: 500 !important;
 }
-
-
 
 .daterangepicker .drp-calendar .calendar-table .month,
 .daterangepicker .drp-calendar .calendar-table select {
-  font-weight: 500 !important;
+	font-weight: 500 !important;
 }
 
 .daterangepicker .drp-calendar .calendar-table th {
-  font-weight: 500 !important;
+	font-weight: 500 !important;
+}
+
+/* Target scrollbar pada area menu yang bisa di-scroll */
+aside > div::-webkit-scrollbar {
+	width: 6px; /* Lebar scrollbar */
+}
+
+aside > div::-webkit-scrollbar-track {
+	background: #282733; /* Warna track scrollbar */
+}
+
+aside > div::-webkit-scrollbar-thumb {
+	background-color: #4a4b61; /* Warna thumb scrollbar */
+	border-radius: 10px; /* Membuat sudut thumb membulat */
+}
+
+aside > div::-webkit-scrollbar-thumb:hover {
+	background-color: #6a6b8c; /* Warna thumb saat hover */
 }
