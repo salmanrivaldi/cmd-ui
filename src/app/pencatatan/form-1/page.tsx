@@ -1,5 +1,9 @@
-import Index from "@/components/05-Pages/Reservation/PrEP/Index";
+import { Form1 } from "@/components/05-Pages/Pencatatan/Form1";
 
 export default function Page() {
-  return <Index />;
+	return (
+		<>
+			<Form1 />
+		</>
+	);
 }

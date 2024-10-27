@@ -1,7 +1,8 @@
 import Header from "@/components/03-Organisms/Apps/Header";
 import Sidebar from "@/components/03-Organisms/Apps/Sidebar";
 import Footer from "@/components/03-Organisms/Apps/Footer";
-import Toolbar from "@/components/03-Organisms/Apps/Toolbar";
+import Toolbar from "@/components/03-Organisms/Apps/Statusbar";
+import Statusbar from "@/components/03-Organisms/Apps/Statusbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -21,15 +22,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 					{/* Main content area dengan overflow auto */}
 					<div className="flex-1 flex flex-col overflow-hidden">
-						{/* Toolbar dengan tinggi tetap */}
+						{/* Statusbar dengan tinggi tetap */}
 						<div className="h-14 flex-none">
-							<Toolbar />
+							<Statusbar />
 						</div>
 
 						{/* Main content dengan overflow auto jika konten melebihi area */}
-						{/*<main className="flex-1 p-7 overflow-auto">
+						<main className="flex-1 p-7 overflow-auto">
 							{children}
-						</main>*/}
+						</main>
 					</div>
 				</div>
 

@@ -58,7 +58,7 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 					<div
 						className={`flex justify-between items-center cursor-pointer py-3 px-7 group hover:text-white ${
 							isActive
-								? "bg-red-500 text-white"
+								? "bg-red-active text-white"
 								: "hover:bg-dark-hover"
 						}`}
 					>
@@ -82,7 +82,9 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 		return (
 			<div
 				className={`flex justify-between items-center cursor-pointer py-3 px-7 group hover:text-white ${
-					isActive ? "bg-red-500 text-white" : "hover:bg-dark-hover"
+					isActive
+						? "bg-red-active text-white"
+						: "hover:bg-dark-hover"
 				}`}
 				onClick={() => toggleSubmenu(index)}
 			>
@@ -121,7 +123,7 @@ MenuItem.displayName = "MenuItem";
 const SubSubmenuItem: React.FC<SubSubmenuItemProps> = React.memo(
 	({ subsubmenu }) => {
 		const content = (
-			<div className="py-2 pl-16 text-xs text-gray-500 hover:bg-dark-hover hover:text-white group">
+			<div className="py-2 pl-16 text-[13px] text-gray-500 hover:bg-dark-hover hover:text-white group">
 				<span className="flex items-center">
 					<FiMinus className="mr-2 group-hover:text-blue-500" />
 					{subsubmenu.label}
@@ -149,7 +151,7 @@ const SubmenuItem: React.FC<SubmenuItemProps> = React.memo(
 			return (
 				<Link href={submenu.url} prefetch={false}>
 					<div
-						className={`relative flex items-center cursor-pointer py-3 pl-10 pr-7 text-xs group hover:bg-dark-hover hover:text-white ${
+						className={`relative flex items-center cursor-pointer py-3 pl-10 pr-7 text-[13px] group hover:bg-dark-hover hover:text-white ${
 							pathname === submenu.url
 								? "bg-dark-hover text-white"
 								: "text-gray-400"
@@ -167,7 +169,7 @@ const SubmenuItem: React.FC<SubmenuItemProps> = React.memo(
 		return (
 			<>
 				<div
-					className={`relative flex items-center cursor-pointer py-3 pl-10 pr-7 text-xs group hover:bg-dark-hover hover:text-white ${
+					className={`relative flex items-center cursor-pointer py-3 pl-10 pr-7 text-[13px] group hover:bg-dark-hover hover:text-white ${
 						pathname === submenu.url
 							? "text-white"
 							: "text-gray-400"
@@ -325,7 +327,7 @@ export default function Sidebar() {
 									false);
 
 							return (
-								<li key={index} className="text-xs">
+								<li key={index} className="text-[13px]">
 									<MenuItem
 										menu={menu}
 										index={index}
