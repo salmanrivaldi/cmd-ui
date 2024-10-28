@@ -8,51 +8,18 @@ import React, {
 	Fragment,
 } from "react";
 import { MdClose } from "react-icons/md";
-import { RxDotFilled } from "react-icons/rx";
-import { FiMinus } from "react-icons/fi";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "@/redux/features/app.slice";
 import { RootState } from "@/redux/store";
 import { menus } from "@/data/menus";
-import { IconType } from "react-icons/lib";
-
-// Interfaces
-interface Submenu {
-	label: string;
-	url?: string;
-	submenus?: Submenu[];
-}
-
-interface Menu {
-	label: string;
-	icon: IconType;
-	url?: string;
-	submenus?: Submenu[];
-}
-
-interface MenuItemProps {
-	menu: Menu;
-	index: number;
-	isActive: boolean;
-	openMenu: number | null;
-	toggleSubmenu: (index: number) => void;
-}
-
-interface SubmenuItemProps {
-	submenu: Submenu;
-	subIndex: number;
-	openSubmenu: number | null;
-	toggleSubSubmenu: (index: number) => void;
-	pathname: string;
-}
-
-interface SubSubmenuItemProps {
-	subsubmenu: Submenu;
-	openSubmenu: number | null;
-	subIndex: number;
-}
+import {
+	MenuItemProps,
+	SubmenuItemProps,
+	SubSubmenuItemProps,
+} from "@/types/menuTypes";
+import { SubmenuIcons } from "@/data/icons";
 
 // MenuItem Component
 const MenuItem: React.FC<MenuItemProps> = React.memo(
@@ -69,7 +36,7 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 					>
 						<div className="flex items-center w-full">
 							<span
-								className={`text-base ${
+								className={`text-lg ${
 									isActive
 										? "text-white"
 										: "group-hover:text-blue-500"
@@ -95,7 +62,7 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 			>
 				<div className="flex items-center w-full">
 					<span
-						className={`text-base ${
+						className={`text-lg ${
 							isActive
 								? "text-white"
 								: "group-hover:text-blue-500"
@@ -130,7 +97,7 @@ const SubSubmenuItem: React.FC<SubSubmenuItemProps> = React.memo(
 		const content = (
 			<div className="py-2 pl-16 text-[13px] text-gray-500 hover:bg-dark-hover hover:text-white group">
 				<span className="flex items-center">
-					<FiMinus className="mr-2 group-hover:text-blue-500" />
+					<SubmenuIcons.FiMinus className="mr-2 group-hover:text-blue-500" />
 					{subsubmenu.label}
 				</span>
 			</div>
@@ -163,7 +130,7 @@ const SubmenuItem: React.FC<SubmenuItemProps> = React.memo(
 						}`}
 					>
 						<div className="flex items-center flex-grow">
-							<RxDotFilled className="mr-2 group-hover:text-blue-500" />
+							<SubmenuIcons.RxDotFilled className="mr-2 group-hover:text-blue-500" />
 							{submenu.label}
 						</div>
 					</div>
@@ -184,7 +151,7 @@ const SubmenuItem: React.FC<SubmenuItemProps> = React.memo(
 					}
 				>
 					<div className="flex items-center flex-grow">
-						<RxDotFilled className="mr-2 group-hover:text-blue-500" />
+						<SubmenuIcons.RxDotFilled className="mr-2 group-hover:text-blue-500" />
 						{submenu.label}
 					</div>
 					{submenu.submenus && (
@@ -301,7 +268,7 @@ export default function Sidebar() {
 	);
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			{SidebarOverlay}
 
 			<aside
@@ -382,6 +349,6 @@ export default function Sidebar() {
 					</ul>
 				</nav>
 			</aside>
-		</React.Fragment>
+		</Fragment>
 	);
 }

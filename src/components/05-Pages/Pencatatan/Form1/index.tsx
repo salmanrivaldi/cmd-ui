@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { StepIndicator } from "@/components/02-Molecules/Steps/StepIndicator";
-import { StepSatu } from "./StepSatu";
-import { FormData, PriorityFormData } from "@/types/form";
+import { Step1 } from "./Step1";
+import { FormData, PriorityFormData } from "@/types/formTypes";
 
 const steps = [
 	{ number: 1, title: "Memprioritaskan" },
@@ -16,53 +16,51 @@ const steps = [
 export const Form1 = () => {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [formData, setFormData] = useState<FormData>({
-		stepSatu: null,
-		stepDua: null,
-		stepTiga: null,
-		stepEmpat: null,
-		stepLima: null,
+		step1: null,
+		step2: null,
+		step3: null,
+		step4: null,
+		step5: null,
 	});
 
-	const handleStepSatuNext = (data: PriorityFormData) => {
-		setFormData({ ...formData, stepSatu: data });
+	const handleStep1Next = (data: PriorityFormData) => {
+		setFormData({ ...formData, step1: data });
 		setCurrentStep(2);
 	};
 
-	const handleStepDuaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepDua: data });
+	const handleStep2Next = (data: Record<string, unknown>) => {
+		setFormData({ ...formData, step2: data });
 		setCurrentStep(3);
 	};
 
-	const handleStepTigaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepTiga: data });
+	const handleStep3Next = (data: Record<string, unknown>) => {
+		setFormData({ ...formData, step3: data });
 		setCurrentStep(4);
 	};
 
-	const handleStepEmpatNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepEmpat: data });
+	const handleStep4Next = (data: Record<string, unknown>) => {
+		setFormData({ ...formData, step4: data });
 		setCurrentStep(5);
 	};
 
-	const handleStepLimaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepLima: data });
+	const handleStep5Next = (data: Record<string, unknown>) => {
+		setFormData({ ...formData, step5: data });
 		// Handle form completion here
 		console.log("Form completed:", formData);
 	};
 
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
+			<div className="w-full mx-auto pt-6 px-4 sm:px-6 lg:px-8">
 				<StepIndicator currentStep={currentStep} steps={steps} />
 
 				<div className="mt-8">
-					{currentStep === 1 && (
-						<StepSatu onNext={handleStepSatuNext} />
-					)}
+					{currentStep === 1 && <Step1 onNext={handleStep1Next} />}
 					{/* Add other steps when they are ready */}
-					{/* {currentStep === 2 && <StepDua onNext={handleStepDuaNext} />} */}
-					{/* {currentStep === 3 && <StepTiga onNext={handleStepTigaNext} />} */}
-					{/* {currentStep === 4 && <StepEmpat onNext={handleStepEmpatNext} />} */}
-					{/* {currentStep === 5 && <StepLima onNext={handleStepLimaNext} />} */}
+					{/* {currentStep === 2 && <Step2 onNext={handleStep2Next} />} */}
+					{/* {currentStep === 3 && <Step3 onNext={handleStep3Next} />} */}
+					{/* {currentStep === 4 && <Step4 onNext={handleStep4Next} />} */}
+					{/* {currentStep === 5 && <Step5 onNext={handleStep5Next} />} */}
 				</div>
 			</div>
 		</div>

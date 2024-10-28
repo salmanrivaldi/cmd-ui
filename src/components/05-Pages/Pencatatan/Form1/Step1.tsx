@@ -8,33 +8,10 @@ import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
 import { SelectSearch } from "@/components/02-Molecules/Form/SearchInput";
 import { Button } from "@/components/01-Atoms/Button/Button";
+import { PriorityFormData } from "@/types/formTypes";
 
 interface StepSatuProps {
 	onNext: (data: PriorityFormData) => void;
-}
-
-interface PriorityFormData {
-	cbsName: string;
-	method: "virtual" | "face-to-face";
-	location: string;
-	region: string;
-	population: string;
-	gender: "male" | "female" | "trans";
-	drugUser: boolean;
-	sexWorker: {
-		direct: boolean;
-		indirect: boolean;
-	};
-	lsl: boolean;
-	trans: boolean;
-	partnerType: {
-		pwid: boolean;
-		fsw: boolean;
-		msm: boolean;
-		odha: boolean;
-	};
-	clientType: "key-population" | "sexual-partner";
-	date?: string;
 }
 
 const options = [
@@ -43,7 +20,7 @@ const options = [
 	{ value: "3", label: "Option 3" },
 ];
 
-export const StepSatu = ({ onNext }: StepSatuProps) => {
+export const Step1 = ({ onNext }: StepSatuProps) => {
 	const [formData, setFormData] = useState<PriorityFormData>({
 		cbsName: "",
 		method: "virtual",

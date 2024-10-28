@@ -1,34 +1,16 @@
 // data/menus.ts
-import { IconType } from "react-icons/lib";
-import { FaHouse } from "react-icons/fa6";
-import { PiNotePencilBold } from "react-icons/pi";
-import { TbReport } from "react-icons/tb";
-import { IoAnalytics } from "react-icons/io5";
-import { TbReportAnalytics } from "react-icons/tb";
-import { MdOutlineDataset } from "react-icons/md";
-import { VscSettingsGear } from "react-icons/vsc";
-interface Submenu {
-    label: string;
-    url?: string; // URL optional, to allow submenus without direct links
-    submenus?: Submenu[]; // Allow submenus in the Submenu interface
-}
-
-interface Menu {
-    label: string;
-    url?: string; // URL optional for top-level menus
-    icon: IconType; // Use IconDefinition for the icon type
-    submenus?: Submenu[]; // Allow submenus in the Menu interface
-}
+import { MenuIcons } from "@/data/icons"
+import { Menu } from "@/types/menuTypes";
 
 export const menus: Menu[] = [
     {
         label: "Dashboard",
         url: "/",
-        icon: FaHouse,
+        icon: MenuIcons.FaHouse,
     },
     {
         label: "Pencatatan",
-        icon: PiNotePencilBold,
+        icon: MenuIcons.PiNotePencilBold,
         submenus: [
             { label: "Form 1", url: "/pencatatan/form-1" },
             { label: "Form 1A", url: "/pencatatan/form-1a" },
@@ -50,7 +32,7 @@ export const menus: Menu[] = [
     },
     {
         label: "Pra Laporan",
-        icon: TbReport,
+        icon: MenuIcons.TbReport,
         submenus: [
             {
                 label: "Data Record",
@@ -123,14 +105,14 @@ export const menus: Menu[] = [
     },
     {
         label: "Report FY24",
-        icon: TbReport,
+        icon: MenuIcons.TbReport,
         submenus: [
             { label: "Performance Tracker", url: "/rf/performance-tracker" },
         ],
     },
     {
         label: "Analisis",
-        icon: IoAnalytics,
+        icon: MenuIcons.IoAnalytics,
         submenus: [
             {
                 label: "Coverage Dashboard",
@@ -163,7 +145,7 @@ export const menus: Menu[] = [
     },
     {
         label: "TB Report & Analysis",
-        icon: TbReportAnalytics,
+        icon: MenuIcons.TbReportAnalytics,
         submenus: [
             { label: "TB Community", url: "/cascade/tb-community" },
             {
@@ -179,13 +161,13 @@ export const menus: Menu[] = [
     },
     {
         label: "Data Kuartal",
-        icon: MdOutlineDataset,
+        icon: MenuIcons.MdOutlineDataset,
         submenus: [
             { label: "PN Community", url: "/dk/pn-community" },
         ],
     },
     {
         label: "Pengaturan",
-        icon: VscSettingsGear
+        icon: MenuIcons.VscSettingsGear
     },
 ];
