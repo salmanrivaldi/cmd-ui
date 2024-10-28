@@ -1,6 +1,12 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, {
+	useState,
+	useEffect,
+	useCallback,
+	useMemo,
+	Fragment,
+} from "react";
 import { MdClose } from "react-icons/md";
 import { RxDotFilled } from "react-icons/rx";
 import { FiMinus } from "react-icons/fi";
@@ -10,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openSidebar } from "@/redux/features/app.slice";
 import { RootState } from "@/redux/store";
 import { menus } from "@/data/menus";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { IconType } from "react-icons/lib";
 
 // Interfaces
 interface Submenu {
@@ -22,7 +27,7 @@ interface Submenu {
 
 interface Menu {
 	label: string;
-	icon: IconDefinition;
+	icon: IconType;
 	url?: string;
 	submenus?: Submenu[];
 }
@@ -64,13 +69,13 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 					>
 						<div className="flex items-center w-full">
 							<span
-								className={`${
+								className={`text-base ${
 									isActive
 										? "text-white"
 										: "group-hover:text-blue-500"
 								}`}
 							>
-								<FontAwesomeIcon icon={menu.icon} />
+								<menu.icon />
 							</span>
 							<span className="ml-4">{menu.label}</span>
 						</div>
@@ -90,13 +95,13 @@ const MenuItem: React.FC<MenuItemProps> = React.memo(
 			>
 				<div className="flex items-center w-full">
 					<span
-						className={`${
+						className={`text-base ${
 							isActive
 								? "text-white"
 								: "group-hover:text-blue-500"
 						}`}
 					>
-						<FontAwesomeIcon icon={menu.icon} />
+						<menu.icon />
 					</span>
 					<span className="ml-4">{menu.label}</span>
 				</div>
@@ -302,7 +307,7 @@ export default function Sidebar() {
 			<aside
 				className={`bg-[#282733] text-[#9899ac] w-64 fixed top-0 left-0 z-10 h-full transition-transform duration-500 ${
 					isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-				} md:translate-x-0 flex flex-col`} // Menetapkan ukuran width tetap
+				} md:translate-x-0 flex flex-col`}
 			>
 				<div className="flex items-center justify-between h-16 px-5 bg-[#201F2B] flex-shrink-0">
 					{Logo}

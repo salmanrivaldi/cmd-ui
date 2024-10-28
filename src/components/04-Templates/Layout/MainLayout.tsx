@@ -1,7 +1,6 @@
 import Header from "@/components/03-Organisms/Apps/Header";
 import Sidebar from "@/components/03-Organisms/Apps/Sidebar";
 import Footer from "@/components/03-Organisms/Apps/Footer";
-import Toolbar from "@/components/03-Organisms/Apps/Statusbar";
 import Statusbar from "@/components/03-Organisms/Apps/Statusbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
