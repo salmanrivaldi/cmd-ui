@@ -7,7 +7,6 @@ import { Checkbox } from "@/components/01-Atoms/Form/Checkbox";
 import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
 import { SelectSearch } from "@/components/02-Molecules/Form/SearchInput";
-import { Button } from "@/components/01-Atoms/Button/Button";
 import { PriorityFormData } from "@/types/formTypes";
 
 interface StepSatuProps {
@@ -393,11 +392,6 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 							</div>
 						</div>
 					</div>
-				</div>
-
-				{/* Submit Button */}
-				<div className="flex justify-end pt-6">
-					<Button type="submit">NEXT STEP</Button>
 				</div>
 			</form>
 		</div>

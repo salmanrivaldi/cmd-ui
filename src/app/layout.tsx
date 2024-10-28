@@ -22,9 +22,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className={poppins.className}>
-			<StoreProvider>
-				<MainLayout>{children}</MainLayout>
-			</StoreProvider>
+			<body>
+				<StoreProvider>
+					<MainLayout>{children}</MainLayout>
+				</StoreProvider>
+			</body>
 		</html>
 	);
 }

@@ -5,36 +5,35 @@ import Statusbar from "@/components/03-Organisms/Apps/Statusbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<body className="h-screen overflow-hidden">
-			<div className="h-full flex flex-col bg-layout">
-				{/* Header dengan tinggi tetap */}
-				<div className="h-16 flex-none">
+		<body
+			aria-label="Layout"
+			className="h-screen overflow-x-hidden flex flex-col bg-layout"
+		>
+			{/* Sidebar dengan lebar tetap */}
+			<div aria-label="Sidebar" className="sidebar w-64 flex-none">
+				<Sidebar />
+			</div>
+			<div
+				aria-label="Wrapper"
+				className="flex flex-auto flex-col md:pl-64"
+			>
+				<div aria-label="Header" className="h-16 flex-none">
 					<Header />
 				</div>
-
-				{/* Content area dengan flex-grow dan overflow hidden */}
-				<div className="flex flex-1 overflow-hidden">
-					{/* Sidebar dengan lebar tetap */}
-					<div className="w-64 flex-none">
-						<Sidebar />
+				<div
+					aria-label="Content Wrapper"
+					className="flex-1 flex flex-col overflow-y-auto"
+				>
+					<div aria-label="Subheader" className="h-14 flex-none">
+						<Statusbar />
 					</div>
 
-					{/* Main content area dengan overflow auto */}
-					<div className="flex-1 flex flex-col overflow-hidden">
-						{/* Statusbar dengan tinggi tetap */}
-						<div className="h-14 flex-none">
-							<Statusbar />
-						</div>
-
-						{/* Main content dengan overflow auto jika konten melebihi area */}
-						<main className="flex-1 p-7 overflow-auto">
-							{children}
-						</main>
-					</div>
+					<main aria-label="Content" className="flex-1 p-4">
+						{children}
+					</main>
 				</div>
 
-				{/* Footer dengan tinggi tetap */}
-				<div className="flex-none">
+				<div aria-label="Footer" className="flex-none">
 					<Footer />
 				</div>
 			</div>
