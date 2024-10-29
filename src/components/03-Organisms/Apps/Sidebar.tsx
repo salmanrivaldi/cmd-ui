@@ -187,8 +187,10 @@ const SubmenuItem: React.FC<SubmenuItemProps> = React.memo(
 
 				{submenu.submenus && (
 					<div
-						className={`${
-							openSubmenu === subIndex ? "block" : "hidden"
+						className={`overflow-hidden transition-all duration-500 ease-in-out ${
+							openSubmenu === subIndex
+								? "max-h-screen"
+								: "max-h-0"
 						}`}
 					>
 						<ul className="mt-2">
@@ -272,7 +274,6 @@ export default function Sidebar() {
 	const handleMouseEnter = () => {
 		if (isCollapsed) {
 			setIsHovered(true);
-			// Langsung mengembalikan state submenu tanpa delay
 			setOpenMenu(submenuState.openMenu);
 			setOpenSubmenu(submenuState.openSubmenu);
 		}
@@ -281,12 +282,10 @@ export default function Sidebar() {
 	const handleMouseLeave = () => {
 		if (isCollapsed) {
 			setIsHovered(false);
-			// Simpan state submenu sebelum sidebar collapse
 			setSubmenuState({
 				openMenu,
 				openSubmenu,
 			});
-			// Reset submenu state
 			setOpenMenu(null);
 			setOpenSubmenu(null);
 		}
@@ -324,9 +323,9 @@ export default function Sidebar() {
 			)}
 			<aside
 				className={`bg-[#282733] text-[#9899ac] fixed top-0 left-0 z-10 h-full transition-all duration-300 
-					${isCollapsed && !isHovered ? "w-16" : "w-64"}
-					${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
-					md:translate-x-0 flex flex-col`}
+          ${isCollapsed && !isHovered ? "w-16" : "w-64"}
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0 flex flex-col`}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 			>
@@ -395,10 +394,10 @@ export default function Sidebar() {
 									{(!isCollapsed || isHovered) &&
 										menu.submenus && (
 											<div
-												className={`${
+												className={`overflow-hidden transition-all duration-500 ease-in-out ${
 													openMenu === index
-														? "block"
-														: "hidden"
+														? "max-h-screen"
+														: "max-h-0"
 												}`}
 											>
 												<ul className="mt-2">
