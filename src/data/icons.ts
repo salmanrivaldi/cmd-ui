@@ -7,6 +7,8 @@ import { MdOutlineDataset } from "react-icons/md";
 import { VscSettingsGear } from "react-icons/vsc";
 import { RxDotFilled } from "react-icons/rx";
 import { FiMinus } from "react-icons/fi";
+import { CgMenuRight } from "react-icons/cg";
+import { HiDotsVertical } from "react-icons/hi";
 
 export const MenuIcons = {
     FaHouse,
@@ -21,4 +23,9 @@ export const MenuIcons = {
 export const SubmenuIcons = {
     RxDotFilled,
     FiMinus
+}
+
+export const HeaderIcons = {
+    CgMenuRight,
+    HiDotsVertical
 }

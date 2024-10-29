@@ -19,6 +19,7 @@ export interface MenuItemProps {
     isActive: boolean;
     openMenu: number | null;
     toggleSubmenu: (index: number) => void;
+    isCollapsed: boolean;
 }
 
 export interface SubmenuItemProps {
@@ -27,10 +28,12 @@ export interface SubmenuItemProps {
     openSubmenu: number | null;
     toggleSubSubmenu: (index: number) => void;
     pathname: string;
+    isCollapsed: boolean;
 }
 
 export interface SubSubmenuItemProps {
     subsubmenu: Submenu;
     openSubmenu: number | null;
     subIndex: number;
+    isCollapsed: boolean;
 }
