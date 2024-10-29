@@ -9,6 +9,7 @@ import { RxDotFilled } from "react-icons/rx";
 import { FiMinus } from "react-icons/fi";
 import { CgMenuRight } from "react-icons/cg";
 import { HiDotsVertical } from "react-icons/hi";
+import { BsPin, BsPinAngle } from "react-icons/bs";
 
 export const MenuIcons = {
     FaHouse,
@@ -27,5 +28,7 @@ export const SubmenuIcons = {
 
 export const HeaderIcons = {
     CgMenuRight,
-    HiDotsVertical
+    HiDotsVertical,
+    BsPinAngle,
+    BsPin,
 }

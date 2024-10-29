@@ -12,7 +12,7 @@ import {
 	SubmenuItemProps,
 	SubSubmenuItemProps,
 } from "@/types/menuTypes";
-import { SubmenuIcons } from "@/data/icons";
+import { HeaderIcons, SubmenuIcons } from "@/data/icons";
 
 // MenuItem Component
 const MenuItem: React.FC<MenuItemProps> = React.memo(
@@ -330,10 +330,12 @@ export default function Sidebar() {
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 			>
-				<div className="flex items-center h-16 px-5 bg-[#201F2B] flex-shrink-0">
+				<div className="flex items-center h-16 bg-[#201F2B] flex-shrink-0">
 					<div
-						className={`flex items-center justify-between transition-all duration-300 ${
-							isCollapsed && !isHovered ? "w-6" : "w-full"
+						className={`flex items-center w-full px-5 relative ${
+							isCollapsed && !isHovered
+								? "justify-center"
+								: "justify-between"
 						}`}
 					>
 						{(!isCollapsed || isHovered) && (
@@ -354,9 +356,17 @@ export default function Sidebar() {
 						)}
 						<button
 							onClick={toggleCollapse}
-							className="text-white hover:text-blue-500 transition-colors"
+							className={`text-light-icon hover:text-blue-500 transition-colors text-xl ${
+								isCollapsed && !isHovered
+									? ""
+									: "absolute right-5"
+							}`}
 						>
-							☰
+							{isCollapsed ? (
+								<HeaderIcons.BsPinAngle />
+							) : (
+								<HeaderIcons.BsPin />
+							)}
 						</button>
 					</div>
 				</div>

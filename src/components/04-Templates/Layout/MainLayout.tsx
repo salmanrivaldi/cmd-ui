@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<body aria-label="Layout" className="min-h-screen bg-layout flex">
 			{/* Sidebar */}
-			<div aria-label="Sidebar" className="flex-none">
+			<div aria-label="Sidebar" className="flex-none z-20">
 				<Sidebar />
 			</div>
 
@@ -17,15 +17,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				className="flex-1 flex flex-col transition-all duration-300 md:ml-16"
 				id="main-content"
 			>
-				<div aria-label="Header" className="h-16 flex-none">
+				{/* Fixed Header */}
+				<div
+					aria-label="Header"
+					className="h-16 flex-none fixed top-0 right-0 left-0 z-10 transition-all duration-300 md:ml-16"
+				>
 					<Header />
 				</div>
 
+				{/* Content area with top padding to account for fixed header */}
 				<div
 					aria-label="Content Wrapper"
-					className="flex-1 flex flex-col overflow-y-auto"
+					className="flex-1 flex flex-col overflow-y-auto mt-16"
 				>
-					<div aria-label="Subheader" className="h-14 flex-none">
+					<div
+						aria-label="Subheader"
+						className="h-14 flex-none sticky top-0 z-[5] bg-white"
+					>
 						<Statusbar />
 					</div>
 
