@@ -1,41 +1,48 @@
 import Header from "@/components/03-Organisms/Apps/Header";
 import Sidebar from "@/components/03-Organisms/Apps/Sidebar";
 import Footer from "@/components/03-Organisms/Apps/Footer";
-import Toolbar from "@/components/03-Organisms/Apps/Statusbar";
 import Statusbar from "@/components/03-Organisms/Apps/Statusbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<body className="h-screen overflow-hidden">
-			<div className="h-full flex flex-col bg-layout">
-				{/* Header dengan tinggi tetap */}
-				<div className="h-16 flex-none">
+		<body aria-label="Layout" className="min-h-screen bg-layout flex">
+			{/* Sidebar */}
+			<div aria-label="Sidebar" className="flex-none z-20">
+				<Sidebar />
+			</div>
+
+			{/* Main Content */}
+			<div
+				aria-label="Wrapper"
+				className="flex-1 flex flex-col transition-all duration-300 md:ml-16"
+				id="main-content"
+			>
+				{/* Fixed Header */}
+				<div
+					aria-label="Header"
+					className="h-16 flex-none fixed top-0 right-0 left-0 z-10 transition-all duration-300 md:ml-16"
+				>
 					<Header />
 				</div>
 
-				{/* Content area dengan flex-grow dan overflow hidden */}
-				<div className="flex flex-1 overflow-hidden">
-					{/* Sidebar dengan lebar tetap */}
-					<div className="w-64 flex-none">
-						<Sidebar />
+				{/* Content area with top padding to account for fixed header */}
+				<div
+					aria-label="Content Wrapper"
+					className="flex-1 flex flex-col overflow-y-auto mt-16"
+				>
+					<div
+						aria-label="Subheader"
+						className="h-14 flex-none sticky top-0 z-[5] bg-white"
+					>
+						<Statusbar />
 					</div>
 
-					{/* Main content area dengan overflow auto */}
-					<div className="flex-1 flex flex-col overflow-hidden">
-						{/* Statusbar dengan tinggi tetap */}
-						<div className="h-14 flex-none">
-							<Statusbar />
-						</div>
-
-						{/* Main content dengan overflow auto jika konten melebihi area */}
-						<main className="flex-1 p-7 overflow-auto">
-							{children}
-						</main>
-					</div>
+					<main aria-label="Content" className="flex-1 p-4">
+						{children}
+					</main>
 				</div>
 
-				{/* Footer dengan tinggi tetap */}
-				<div className="flex-none">
+				<div aria-label="Footer" className="flex-none">
 					<Footer />
 				</div>
 			</div>

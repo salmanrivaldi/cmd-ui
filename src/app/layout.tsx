@@ -5,29 +5,28 @@ import "./globals.css";
 import StoreProvider from "@/providers/StoreProvider";
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Klikpijar",
-  description: "",
+	title: "CMD UI",
+	description: "",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="en"
-      className={poppins.className}
-    >
-      <StoreProvider>
-        <MainLayout>{children}</MainLayout>
-      </StoreProvider>
-    </html>
-  );
+	return (
+		<html lang="en" className={poppins.className}>
+			<body>
+				<StoreProvider>
+					<MainLayout>{children}</MainLayout>
+				</StoreProvider>
+			</body>
+		</html>
+	);
 }

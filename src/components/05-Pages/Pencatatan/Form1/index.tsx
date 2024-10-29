@@ -1,9 +1,9 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StepIndicator } from "@/components/02-Molecules/Steps/StepIndicator";
-import { StepSatu } from "./StepSatu";
-import { FormData, PriorityFormData } from "@/types/form";
+import { Step1 } from "./Step1";
+import { FormData, PriorityFormData } from "@/types/formTypes";
+import { Button } from "@/components/01-Atoms/Button/Button";
 
 const steps = [
 	{ number: 1, title: "Memprioritaskan" },
@@ -16,53 +16,62 @@ const steps = [
 export const Form1 = () => {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [formData, setFormData] = useState<FormData>({
-		stepSatu: null,
-		stepDua: null,
-		stepTiga: null,
-		stepEmpat: null,
-		stepLima: null,
+		step1: null,
+		step2: null,
+		step3: null,
+		step4: null,
+		step5: null,
 	});
 
-	const handleStepSatuNext = (data: PriorityFormData) => {
-		setFormData({ ...formData, stepSatu: data });
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth", // This enables smooth scrolling
+		});
+	};
+
+	// Add effect to handle scroll when step changes
+	useEffect(() => {
+		scrollToTop();
+	}, [currentStep]);
+
+	const handleStep1Next = (data: PriorityFormData) => {
+		setFormData({ ...formData, step1: data });
 		setCurrentStep(2);
 	};
 
-	const handleStepDuaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepDua: data });
-		setCurrentStep(3);
-	};
-
-	const handleStepTigaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepTiga: data });
-		setCurrentStep(4);
-	};
-
-	const handleStepEmpatNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepEmpat: data });
-		setCurrentStep(5);
-	};
-
-	const handleStepLimaNext = (data: Record<string, unknown>) => {
-		setFormData({ ...formData, stepLima: data });
-		// Handle form completion here
-		console.log("Form completed:", formData);
+	const navigateToStep = (step: number) => {
+		setCurrentStep(step);
 	};
 
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
-				<StepIndicator currentStep={currentStep} steps={steps} />
-
+			<div className="w-full mx-auto pt-6 px-4 sm:px-6 lg:px-8">
+				<StepIndicator
+					currentStep={currentStep}
+					steps={steps}
+					onStepClick={navigateToStep}
+				/>
 				<div className="mt-8">
-					{currentStep === 1 && (
-						<StepSatu onNext={handleStepSatuNext} />
-					)}
+					{currentStep === 1 && <Step1 onNext={handleStep1Next} />}
 					{/* Add other steps when they are ready */}
-					{/* {currentStep === 2 && <StepDua onNext={handleStepDuaNext} />} */}
-					{/* {currentStep === 3 && <StepTiga onNext={handleStepTigaNext} />} */}
-					{/* {currentStep === 4 && <StepEmpat onNext={handleStepEmpatNext} />} */}
-					{/* {currentStep === 5 && <StepLima onNext={handleStepLimaNext} />} */}
+				</div>
+				{/* Navigation Controls */}
+				<div className="flex justify-between mt-6">
+					{currentStep > 1 && (
+						<Button
+							variant="light"
+							onClick={() => navigateToStep(currentStep - 1)}
+						>
+							Previous Step
+						</Button>
+					)}
+
+					{currentStep < steps.length && (
+						<Button onClick={() => navigateToStep(currentStep + 1)}>
+							Next Step
+						</Button>
+					)}
 				</div>
 			</div>
 		</div>

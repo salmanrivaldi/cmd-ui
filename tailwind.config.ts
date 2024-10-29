@@ -9,8 +9,10 @@ const config: Config = {
 				layout: '#F2F3F8',
 				'red-active': '#DB1430',
 				'dark-hover': '#2f2e3c',
-				'dark-icon': '#3a3a5d',
+				'dark-icon': '#4a4a76',
+				'light-icon': '#7c87a6',
 				'lime-section': '#A8C827',
+
 			},
 		}
 	},

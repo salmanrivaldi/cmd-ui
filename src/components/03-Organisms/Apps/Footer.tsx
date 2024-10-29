@@ -10,8 +10,8 @@ export default function Footer() {
 	};
 
 	return (
-		<footer className="w-full md:ml-64 p-4 bg-white">
-			<p className="text-sm text-gray-500 transition-colors duration-300">
+		<footer className="w-full p-5 bg-white">
+			<div className="text-sm text-gray-500 transition-colors duration-300">
 				&copy; {new Date().getFullYear()} -{" "}
 				<span
 					onClick={handleDuplicate}
@@ -19,7 +19,7 @@ export default function Footer() {
 				>
 					FHI360 EPiC
 				</span>
-			</p>
+			</div>
 		</footer>
 	);
 }

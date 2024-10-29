@@ -23,9 +23,9 @@ export interface PriorityFormData {
 }
 
 export interface FormData {
-    stepSatu: PriorityFormData | null;
-    stepDua: Record<string, unknown> | null;
-    stepTiga: Record<string, unknown> | null;
-    stepEmpat: Record<string, unknown> | null;
-    stepLima: Record<string, unknown> | null;
+    step1: PriorityFormData | null;
+    step2: Record<string, unknown> | null;
+    step3: Record<string, unknown> | null;
+    step4: Record<string, unknown> | null;
+    step5: Record<string, unknown> | null;
 }

@@ -1,35 +1,16 @@
 // data/menus.ts
-import { faScrewdriverWrench, IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import {
-    faHouse,
-    faCalendarAlt,
-    faHeart,
-    faSyringe,
-    faChartColumn,
-} from "@fortawesome/free-solid-svg-icons";
-
-interface Submenu {
-    label: string;
-    url?: string; // URL optional, to allow submenus without direct links
-    submenus?: Submenu[]; // Allow submenus in the Submenu interface
-}
-
-interface Menu {
-    label: string;
-    url?: string; // URL optional for top-level menus
-    icon: IconDefinition; // Use IconDefinition for the icon type
-    submenus?: Submenu[]; // Allow submenus in the Menu interface
-}
+import { MenuIcons } from "@/data/icons"
+import { Menu } from "@/types/menuTypes";
 
 export const menus: Menu[] = [
     {
         label: "Dashboard",
         url: "/",
-        icon: faHouse,
+        icon: MenuIcons.FaHouse,
     },
     {
         label: "Pencatatan",
-        icon: faCalendarAlt,
+        icon: MenuIcons.PiNotePencilBold,
         submenus: [
             { label: "Form 1", url: "/pencatatan/form-1" },
             { label: "Form 1A", url: "/pencatatan/form-1a" },
@@ -51,7 +32,7 @@ export const menus: Menu[] = [
     },
     {
         label: "Pra Laporan",
-        icon: faHeart,
+        icon: MenuIcons.TbReport,
         submenus: [
             {
                 label: "Data Record",
@@ -124,14 +105,14 @@ export const menus: Menu[] = [
     },
     {
         label: "Report FY24",
-        icon: faSyringe,
+        icon: MenuIcons.TbReport,
         submenus: [
             { label: "Performance Tracker", url: "/rf/performance-tracker" },
         ],
     },
     {
         label: "Analisis",
-        icon: faCalendarAlt,
+        icon: MenuIcons.IoAnalytics,
         submenus: [
             {
                 label: "Coverage Dashboard",
@@ -164,7 +145,7 @@ export const menus: Menu[] = [
     },
     {
         label: "TB Report & Analysis",
-        icon: faChartColumn,
+        icon: MenuIcons.TbReportAnalytics,
         submenus: [
             { label: "TB Community", url: "/cascade/tb-community" },
             {
@@ -180,13 +161,13 @@ export const menus: Menu[] = [
     },
     {
         label: "Data Kuartal",
-        icon: faSyringe,
+        icon: MenuIcons.MdOutlineDataset,
         submenus: [
             { label: "PN Community", url: "/dk/pn-community" },
         ],
     },
     {
         label: "Pengaturan",
-        icon: faScrewdriverWrench
+        icon: MenuIcons.VscSettingsGear
     },
 ];
