@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			{/* Main Content */}
 			<div
 				aria-label="Wrapper"
-				className="flex-1 flex flex-col transition-all duration-300 md:ml-16"
+				className="flex-1 flex flex-col transition-all duration-300 md:ml-64"
 				id="main-content"
 			>
 				{/* Fixed Header */}

@@ -219,7 +219,7 @@ export default function Sidebar() {
 	const pathname = usePathname();
 	const [openMenu, setOpenMenu] = useState<number | null>(null);
 	const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
-	const [isCollapsed, setIsCollapsed] = useState(true);
+	const [isCollapsed, setIsCollapsed] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 	const [submenuState, setSubmenuState] = useState<{
 		openMenu: number | null;
