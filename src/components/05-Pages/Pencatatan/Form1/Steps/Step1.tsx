@@ -3,15 +3,10 @@
 import { useState } from "react";
 import { RadioButton } from "@/components/01-Atoms/Button/RadioButton";
 import { Select } from "@/components/01-Atoms/Form/Select";
-import { Checkbox } from "@/components/01-Atoms/Form/Checkbox";
+import Checkbox from "@/components/01-Atoms/Form/Checkbox";
 import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
 import { SelectSearch } from "@/components/02-Molecules/Form/SearchInput";
-import { PriorityFormData } from "@/types/formTypes";
-
-interface StepSatuProps {
-	onNext: (data: PriorityFormData) => void;
-}
 
 const options = [
 	{ value: "1", label: "Option 1" },
@@ -19,8 +14,8 @@ const options = [
 	{ value: "3", label: "Option 3" },
 ];
 
-export const Step1 = ({ onNext }: StepSatuProps) => {
-	const [formData, setFormData] = useState<PriorityFormData>({
+export const Step1 = ({ onNext }: any) => {
+	const [formData, setFormData] = useState<any>({
 		cbsName: "",
 		method: "virtual",
 		location: "",
@@ -44,7 +39,11 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 		date: "",
 	});
 
-	const [selectedOption, setSelectedOption] = useState<null>(null);
+	const [selectedOption, setSelectedOption] = useState<any | null>(null);
+
+	const handleSelectChange = (option: any | null) => {
+		setSelectedOption(option);
+	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -68,7 +67,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 						<SelectSearch
 							id="cbs-pv"
 							options={options}
-							onChange={setSelectedOption}
+							onChange={handleSelectChange}
 							value={selectedOption}
 							placeholder="Select an item"
 						/>
@@ -221,7 +220,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 					<Label>Wilayah</Label>
 					<SelectSearch
 						options={options}
-						onChange={setSelectedOption}
+						onChange={handleSelectChange}
 						value={selectedOption}
 						placeholder="Select a item"
 					/>
@@ -243,7 +242,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 								name="drugUser"
 								label="Penasun"
 								checked={formData.drugUser}
-								onChange={(e) =>
+								onChange={(e: any) =>
 									setFormData({
 										...formData,
 										drugUser: e.target.checked,
@@ -261,7 +260,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 									name="directSexWorker"
 									label="Langsung"
 									checked={formData.sexWorker.direct}
-									onChange={(e) =>
+									onChange={(e: any) =>
 										setFormData({
 											...formData,
 											sexWorker: {
@@ -276,7 +275,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 									name="indirectSexWorker"
 									label="Tidak Langsung"
 									checked={formData.sexWorker.indirect}
-									onChange={(e) =>
+									onChange={(e: any) =>
 										setFormData({
 											...formData,
 											sexWorker: {
@@ -299,7 +298,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 								name="lsl"
 								label="LSL"
 								checked={formData.lsl}
-								onChange={(e) =>
+								onChange={(e: any) =>
 									setFormData({
 										...formData,
 										lsl: e.target.checked,
@@ -319,7 +318,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 								name="trans"
 								label="WARIA"
 								checked={formData.trans}
-								onChange={(e) =>
+								onChange={(e: any) =>
 									setFormData({
 										...formData,
 										trans: e.target.checked,
@@ -339,7 +338,7 @@ export const Step1 = ({ onNext }: StepSatuProps) => {
 								name="pwid"
 								label="Pasangan/PP"
 								checked={formData.partnerType.pwid}
-								onChange={(e) =>
+								onChange={(e: any) =>
 									setFormData({
 										...formData,
 										partnerType: {

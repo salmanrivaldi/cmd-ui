@@ -5,15 +5,18 @@ interface SearchInputProps {
 	value: string;
 	onChange: (value: string) => void;
 	placeholder?: string;
+	id?: string; // Added id prop
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
 	value,
 	onChange,
-	placeholder = "Select a item",
+	placeholder = "Select an item",
+	id,
 }) => {
 	return (
 		<input
+			id={id}
 			type="text"
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
@@ -34,11 +37,6 @@ export const Text: React.FC<TextProps> = ({ children, className = "" }) => {
 };
 
 // molecules/SelectDropdown/SelectDropdown.tsx
-interface SelectOption {
-	value: string;
-	label: string;
-}
-
 interface SelectDropdownProps {
 	options: SelectOption[];
 	onSelect: (option: SelectOption) => void;
@@ -74,13 +72,20 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
 };
 
 // organisms/Select/Select.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+export interface SelectOption {
+	value: string;
+	label: string;
+}
 
 interface SelectProps {
+	id?: string;
 	options: SelectOption[];
 	onChange: (option: SelectOption | null) => void;
-	value?: SelectOption | null;
+	value: SelectOption | null;
 	placeholder?: string;
+	isDisabled?: boolean;
 }
 
 export const SelectSearch: React.FC<SelectProps> = ({
@@ -88,9 +93,17 @@ export const SelectSearch: React.FC<SelectProps> = ({
 	onChange,
 	value,
 	placeholder,
+	id,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [searchValue, setSearchValue] = useState("");
+
+	// Update searchValue when value prop changes
+	useEffect(() => {
+		if (value) {
+			setSearchValue(value.label);
+		}
+	}, [value]);
 
 	const handleSelect = (option: SelectOption) => {
 		onChange(option);
@@ -100,12 +113,16 @@ export const SelectSearch: React.FC<SelectProps> = ({
 
 	const handleInputChange = (value: string) => {
 		setSearchValue(value);
+		if (!value) {
+			onChange(null);
+		}
 		setIsOpen(true);
 	};
 
 	return (
 		<div className="relative">
 			<SearchInput
+				id={id}
 				value={searchValue}
 				onChange={handleInputChange}
 				placeholder={placeholder}

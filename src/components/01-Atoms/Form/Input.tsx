@@ -1,21 +1,22 @@
-// components/atoms/Input.tsx
 import React from "react";
 
-interface InputProps {
-	type?: string;
-	value: string;
+interface InputProps
+	extends Omit<
+		React.InputHTMLAttributes<HTMLInputElement>,
+		"value" | "onChange"
+	> {
+	value?: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	placeholder?: string;
 	className?: string;
 }
 
-// Using a named export with a regular function
 export function Input({
 	type = "text",
-	value,
+	value = "",
 	onChange,
 	placeholder,
-	className = "", // Default to an empty string if className is not provided
+	className = "",
+	...props
 }: InputProps) {
 	return (
 		<input
@@ -24,6 +25,7 @@ export function Input({
 			onChange={onChange}
 			placeholder={placeholder}
 			className={`w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400 ${className}`}
+			{...props}
 		/>
 	);
 }

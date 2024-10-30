@@ -3,14 +3,16 @@ interface CheckboxProps {
 	name: string;
 	label: string;
 	checked?: boolean;
+	disabled?: boolean;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Checkbox = ({
+const Checkbox = ({
 	id,
 	name,
 	label,
 	checked,
+	disabled,
 	onChange,
 }: CheckboxProps) => {
 	return (
@@ -20,12 +22,20 @@ export const Checkbox = ({
 				id={id}
 				name={name}
 				checked={checked}
+				disabled={disabled}
 				onChange={onChange}
-				className="h-4 w-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500"
+				className="h-4 w-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
 			/>
-			<label htmlFor={id} className="text-sm text-gray-500">
+			<label
+				htmlFor={id}
+				className={`text-sm ${
+					disabled ? "text-gray-400" : "text-gray-500"
+				}`}
+			>
 				{label}
 			</label>
 		</div>
 	);
 };
+
+export default Checkbox;
