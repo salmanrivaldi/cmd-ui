@@ -4,6 +4,7 @@ interface RadioButtonProps {
 	value: string;
 	label: string;
 	checked?: boolean;
+	disabled?: boolean;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,6 +14,7 @@ export const RadioButton = ({
 	value,
 	label,
 	checked,
+	disabled,
 	onChange,
 }: RadioButtonProps) => {
 	return (
@@ -23,10 +25,23 @@ export const RadioButton = ({
 				name={name}
 				value={value}
 				checked={checked}
+				disabled={disabled}
 				onChange={onChange}
-				className="h-4 w-4 text-gray-500 border-gray-100 focus:ring-gray-500"
+				className={`h-4 w-4 border-gray-300 focus:ring-gray-500
+          ${
+				disabled
+					? "text-gray-300 cursor-not-allowed"
+					: "text-gray-500 cursor-pointer"
+			}`}
 			/>
-			<label htmlFor={id} className="text-sm text-gray-500">
+			<label
+				htmlFor={id}
+				className={`text-sm ${
+					disabled
+						? "text-gray-400 cursor-not-allowed"
+						: "text-gray-500 cursor-pointer"
+				}`}
+			>
 				{label}
 			</label>
 		</div>
