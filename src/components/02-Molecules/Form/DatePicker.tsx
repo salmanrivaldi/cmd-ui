@@ -306,7 +306,7 @@ const DatePicker = ({
 	return (
 		<div className={`relative ${className}`} ref={datePickerRef}>
 			<div
-				className="flex items-center border p-2 bg-white cursor-pointer"
+				className="flex items-center border p-2 bg-white cursor-pointer w-full border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400 "
 				onClick={(e) => {
 					e.preventDefault();
 					e.stopPropagation();

@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { RadioButton } from "@/components/01-Atoms/Button/RadioButton";
-import { Select } from "@/components/01-Atoms/Form/Select";
+import Select from "@/components/01-Atoms/Form/Select";
 import Checkbox from "@/components/01-Atoms/Form/Checkbox";
 import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
-import { SelectSearch } from "@/components/02-Molecules/Form/SearchInput";
 import DatePicker from "@/components/02-Molecules/Form/DatePicker";
 
 const options = [
@@ -17,7 +16,7 @@ const options = [
 
 export const Step1 = ({ onNext }: any) => {
 	const [formData, setFormData] = useState<any>({
-		cbsName: "",
+		cbsPv: "",
 		method: "virtual",
 		location: "",
 		region: "",
@@ -40,13 +39,9 @@ export const Step1 = ({ onNext }: any) => {
 		date: "",
 	});
 
-	const [selectedContactDate, setSelectedContactDate] = useState<Date | undefined>();
-
-	const [selectedOption, setSelectedOption] = useState<any | null>(null);
-
-	const handleSelectChange = (option: any | null) => {
-		setSelectedOption(option);
-	};
+	const [selectedContactDate, setSelectedContactDate] = useState<
+		Date | undefined
+	>();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -67,12 +62,18 @@ export const Step1 = ({ onNext }: any) => {
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div className="space-y-2">
 						<Label htmlFor="cbs-pv">Nama CBS/PV</Label>
-						<SelectSearch
+						<Select
 							id="cbs-pv"
+							name="cbs-pv"
+							value={formData.cbsPv}
+							placeholder="Select..."
+							onChange={(e: any) =>
+								setFormData({
+									...formData,
+									cbsPv: e.target.value,
+								})
+							}
 							options={options}
-							onChange={handleSelectChange}
-							value={selectedOption}
-							placeholder="Select an item"
 						/>
 					</div>
 
@@ -146,12 +147,13 @@ export const Step1 = ({ onNext }: any) => {
 							name="population"
 							value={formData.population}
 							placeholder="Select..."
-							onChange={(e) =>
+							onChange={(e: any) =>
 								setFormData({
 									...formData,
 									population: e.target.value,
 								})
 							}
+							options={options}
 						/>
 					</div>
 				</div>
@@ -214,11 +216,18 @@ export const Step1 = ({ onNext }: any) => {
 				{/* Region Selection */}
 				<div className="space-y-2">
 					<Label>Wilayah</Label>
-					<SelectSearch
+					<Select
+						id="region"
+						name="region"
+						value={formData.region}
+						placeholder="Select..."
+						onChange={(e: any) =>
+							setFormData({
+								...formData,
+								region: e.target.value,
+							})
+						}
 						options={options}
-						onChange={handleSelectChange}
-						value={selectedOption}
-						placeholder="Select a item"
 					/>
 				</div>
 
