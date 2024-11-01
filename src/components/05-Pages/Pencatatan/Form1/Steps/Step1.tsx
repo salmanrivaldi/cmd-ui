@@ -7,6 +7,7 @@ import Checkbox from "@/components/01-Atoms/Form/Checkbox";
 import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
 import { SelectSearch } from "@/components/02-Molecules/Form/SearchInput";
+import DatePicker from "@/components/02-Molecules/Form/DatePicker";
 
 const options = [
 	{ value: "1", label: "Option 1" },
@@ -38,6 +39,8 @@ export const Step1 = ({ onNext }: any) => {
 		clientType: "key-population",
 		date: "",
 	});
+
+	const [selectedContactDate, setSelectedContactDate] = useState<Date | undefined>();
 
 	const [selectedOption, setSelectedOption] = useState<any | null>(null);
 
@@ -75,17 +78,10 @@ export const Step1 = ({ onNext }: any) => {
 
 					<div className="space-y-2">
 						<Label htmlFor="contact-date">Tanggal Kontak</Label>
-						<input
-							id="contact-date"
-							type="date"
-							className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
-							value={formData.date}
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									date: e.target.value,
-								})
-							}
+						<DatePicker
+							selected={selectedContactDate}
+							onChange={setSelectedContactDate}
+							className="w-full"
 						/>
 					</div>
 				</div>

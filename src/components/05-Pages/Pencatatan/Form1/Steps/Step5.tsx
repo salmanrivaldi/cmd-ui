@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Checkbox from "@/components/01-Atoms/Form/Checkbox";
 import Label from "@/components/01-Atoms/Form/Label";
-import { Input } from "@/components/01-Atoms/Form/Input";
+import DatePicker from "@/components/02-Molecules/Form/DatePicker";
+import { RadioButton } from "@/components/01-Atoms/Button/RadioButton";
 
 export interface Step5Props {
 	onSubmit: (data: any) => void;
@@ -30,7 +31,31 @@ export const Step5 = ({ onSubmit }: Step5Props) => {
 		cbsReferral: false,
 		supervisorCheck: "",
 		cmdInputDate: "",
+		needsType: "high", // untuk radio button kebutuhan tinggi/rendah
 	});
+
+	const [selectedSupervisorDate, setSelectedSupervisorDate] = useState<
+		Date | undefined
+	>();
+	const [selectedCmdDate, setSelectedCmdDate] = useState<Date | undefined>();
+
+	// Handle supervisor date change
+	const handleSupervisorDateChange = (date: Date) => {
+		setSelectedSupervisorDate(date);
+		setFormData({
+			...formData,
+			supervisorCheck: date.toISOString(),
+		});
+	};
+
+	// Handle CMD date change
+	const handleCmdDateChange = (date: Date) => {
+		setSelectedCmdDate(date);
+		setFormData({
+			...formData,
+			cmdInputDate: date.toISOString(),
+		});
+	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -54,15 +79,43 @@ export const Step5 = ({ onSubmit }: Step5Props) => {
 						&apos;Pass it on&apos;)
 					</Label>
 
-					{/* High Needs Section */}
-					<div className="space-y-4 pl-4">
-						<div className="font-medium">
-							Klien ini adalah: Kebutuhan tinggi/High needs
-						</div>
-
+					<div className="space-y-4">
+						<Label>Klien ini adalah:</Label>
 						<div className="space-y-2">
+							<RadioButton
+								id="highNeeds"
+								name="needsType"
+								value="high"
+								label="Kebutuhan Tinggi"
+								checked={formData.needsType === "high"}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsType: e.target.value,
+									})
+								}
+							/>
+							<RadioButton
+								id="lowNeeds"
+								name="needsType"
+								value="low"
+								label="Kebutuhan Rendah"
+								checked={formData.needsType === "low"}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsType: e.target.value,
+									})
+								}
+							/>
+						</div>
+					</div>
+
+					{/* High Needs Services Section */}
+					{formData.needsType === "high" && (
+						<div className="space-y-2 pl-4">
 							<Checkbox
-								name=""
+								name="hivTest"
 								id="hivTest"
 								label="Tes HIV"
 								checked={
@@ -83,12 +136,50 @@ export const Step5 = ({ onSubmit }: Step5Props) => {
 								}
 							/>
 							<Checkbox
-								name="mobileclinic"
-								id="mobileClinic"
-								label="Dokling/Layanan bergerak"
+								name="tb"
+								id="tb"
+								label="TB"
+								checked={formData.needsAssessment.services.tb}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsAssessment: {
+											...formData.needsAssessment,
+											services: {
+												...formData.needsAssessment
+													.services,
+												tb: e.target.checked,
+											},
+										},
+									})
+								}
+							/>
+							<Checkbox
+								name="ims"
+								id="ims"
+								label="IMS"
+								checked={formData.needsAssessment.services.ims}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsAssessment: {
+											...formData.needsAssessment,
+											services: {
+												...formData.needsAssessment
+													.services,
+												ims: e.target.checked,
+											},
+										},
+									})
+								}
+							/>
+							<Checkbox
+								name="aeoReferral"
+								id="aeoReferral"
+								label="Rujuk ke AEO"
 								checked={
 									formData.needsAssessment.services
-										.mobileClinic
+										.aeoReferral
 								}
 								onChange={(e) =>
 									setFormData({
@@ -98,14 +189,85 @@ export const Step5 = ({ onSubmit }: Step5Props) => {
 											services: {
 												...formData.needsAssessment
 													.services,
-												mobileClinic: e.target.checked,
+												aeoReferral: e.target.checked,
 											},
 										},
 									})
 								}
 							/>
-							{/* Add other service checkboxes similarly */}
+							<Checkbox
+								name="other"
+								id="other"
+								label="Lainnya"
+								checked={
+									formData.needsAssessment.services.other
+								}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsAssessment: {
+											...formData.needsAssessment,
+											services: {
+												...formData.needsAssessment
+													.services,
+												other: e.target.checked,
+											},
+										},
+									})
+								}
+							/>
+							<Checkbox
+								name="declined"
+								id="declined"
+								label="Menolak dirujuk"
+								checked={
+									formData.needsAssessment.services.declined
+								}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										needsAssessment: {
+											...formData.needsAssessment,
+											services: {
+												...formData.needsAssessment
+													.services,
+												declined: e.target.checked,
+											},
+										},
+									})
+								}
+							/>
 						</div>
+					)}
+
+					{/* Additional Options */}
+					<div className="space-y-2">
+						<RadioButton
+							value="yes"
+							name="form2Registration"
+							id="form2Registration"
+							label="Klien tercatat di Form 2 (ODHA di luar perawatan)"
+							checked={formData.form2Registration}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									form2Registration: e.target.checked,
+								})
+							}
+						/>
+						<RadioButton
+							value="yes"
+							name="cbsReferral"
+							id="cbsReferral"
+							label="Dirujuk ke CBS+"
+							checked={formData.cbsReferral}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									cbsReferral: e.target.checked,
+								})
+							}
+						/>
 					</div>
 
 					{/* Dates Section */}
@@ -116,28 +278,18 @@ export const Step5 = ({ onSubmit }: Step5Props) => {
 									Diperiksa dan dicatat oleh CBS supervisor
 									pada
 								</Label>
-								<Input
-									type="date"
-									value={formData.supervisorCheck}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											supervisorCheck: e.target.value,
-										})
-									}
+								<DatePicker
+									selected={selectedSupervisorDate}
+									onChange={handleSupervisorDateChange}
+									className="w-full"
 								/>
 							</div>
 							<div className="space-y-2">
 								<Label>Tanggal Input ke CMD</Label>
-								<Input
-									type="date"
-									value={formData.cmdInputDate}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											cmdInputDate: e.target.value,
-										})
-									}
+								<DatePicker
+									selected={selectedCmdDate}
+									onChange={handleCmdDateChange}
+									className="w-full"
 								/>
 							</div>
 						</div>
