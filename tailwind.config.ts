@@ -7,6 +7,7 @@ const config: Config = {
 		extend: {
 			colors: {
 				layout: '#F2F3F8',
+				'sidebar': '#282733',
 				'red-active': '#DB1430',
 				'dark-hover': '#2f2e3c',
 				'dark-icon': '#4a4a76',

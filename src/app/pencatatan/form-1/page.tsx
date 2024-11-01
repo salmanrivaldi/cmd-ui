@@ -1,5 +1,5 @@
 // app/form/page.tsx
-import { Form1 } from "@/components/05-Pages/Pencatatan/Form1";
+import { Form1 } from "@/components/05-Pages/Auth/Pencatatan/Form1";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
