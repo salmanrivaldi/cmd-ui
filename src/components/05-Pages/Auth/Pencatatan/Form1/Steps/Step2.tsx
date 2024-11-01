@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RadioButton } from "@/components/01-Atoms/Button/RadioButton";
 import { Input } from "@/components/01-Atoms/Form/Input";
 import Label from "@/components/01-Atoms/Form/Label";
-import { Select } from "@/components/01-Atoms/Form/Select";
+import Select from "@/components/01-Atoms/Form/Select";
 
 export interface Step2Props {
 	onNext: (data: any) => void;
@@ -75,8 +75,9 @@ export const Step2 = ({ onNext }: Step2Props) => {
 						/>
 						<Select
 							id="birthYear"
+							name="birthYear"
 							value={formData.birthYear}
-							onChange={(e) =>
+							onChange={(e: any) =>
 								setFormData({
 									...formData,
 									birthYear: e.target.value,
@@ -87,8 +88,9 @@ export const Step2 = ({ onNext }: Step2Props) => {
 						/>
 						<Select
 							id="birthMonth"
+							name="birthMonth"
 							value={formData.birthMonth}
-							onChange={(e) =>
+							onChange={(e: any) =>
 								setFormData({
 									...formData,
 									birthMonth: e.target.value,
@@ -99,8 +101,9 @@ export const Step2 = ({ onNext }: Step2Props) => {
 						/>
 						<Select
 							id="birthDate"
+							name="birthDate"
 							value={formData.birthDate}
-							onChange={(e) =>
+							onChange={(e: any) =>
 								setFormData({
 									...formData,
 									birthDate: e.target.value,

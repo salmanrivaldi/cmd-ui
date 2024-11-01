@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { openSidebar } from "@/redux/features/app.slice";
 import { HeaderIcons } from "@/data/icons";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -23,8 +24,10 @@ export default function Header() {
 		setDropdownOpen(false);
 	};
 
+	const router = useRouter();
+
 	const handleSignOut = () => {
-		// Tambahkan logika untuk sign out di sini
+		router.push("/");
 	};
 
 	useEffect(() => {

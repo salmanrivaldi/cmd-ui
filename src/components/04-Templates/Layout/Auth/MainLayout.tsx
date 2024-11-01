@@ -1,9 +1,22 @@
+'use client'
+import { usePathname } from "next/navigation";
 import Header from "@/components/03-Organisms/Apps/Header";
 import Sidebar from "@/components/03-Organisms/Apps/Sidebar";
 import Footer from "@/components/03-Organisms/Apps/Footer";
 import Statusbar from "@/components/03-Organisms/Apps/Statusbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+	const pathname = usePathname();
+
+	// Check if current path is login or register
+	const isAuthPage = pathname === "/" || pathname === "/register";
+
+	// If it's a login or register page, render without the main layout
+	if (isAuthPage) {
+		return <>{children}</>;
+	}
+
+	// Otherwise, render with the main layout
 	return (
 		<body aria-label="Layout" className="min-h-screen bg-layout flex">
 			{/* Sidebar */}

@@ -322,7 +322,7 @@ export default function Sidebar() {
 				/>
 			)}
 			<aside
-				className={`bg-[#282733] text-[#9899ac] fixed top-0 left-0 z-10 h-full transition-all duration-300 
+				className={`bg-sidebar text-[#9899ac] fixed top-0 left-0 z-10 h-full transition-all duration-300 
           ${isCollapsed && !isHovered ? "w-16" : "w-64"}
           ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 flex flex-col`}

@@ -5,7 +5,7 @@ import { Menu } from "@/types/menuTypes";
 export const menus: Menu[] = [
     {
         label: "Dashboard",
-        url: "/",
+        url: "/dashboard",
         icon: MenuIcons.FaHouse,
     },
     {

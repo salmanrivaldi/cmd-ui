@@ -1,10 +1,11 @@
 interface CheckboxProps {
 	id: string;
 	name: string;
-	label: string;
+	label?: string;
 	checked?: boolean;
 	disabled?: boolean;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	required?: boolean;
 }
 
 const Checkbox = ({
@@ -14,6 +15,7 @@ const Checkbox = ({
 	checked,
 	disabled,
 	onChange,
+	required,
 }: CheckboxProps) => {
 	return (
 		<div className="flex items-center gap-2">
@@ -24,6 +26,7 @@ const Checkbox = ({
 				checked={checked}
 				disabled={disabled}
 				onChange={onChange}
+				required={required}
 				className="h-4 w-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
 			/>
 			<label

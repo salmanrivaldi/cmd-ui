@@ -97,12 +97,13 @@ export const Form1 = () => {
 						{currentStep === steps.length ? (
 							<Button
 								onClick={handleSubmit}
-								className="bg-green-500 hover:bg-green-600"
+								className="bg-green-500 text-white hover:bg-green-600"
 							>
 								Submit
 							</Button>
 						) : (
 							<Button
+								variant="primary"
 								onClick={() => navigateToStep(currentStep + 1)}
 							>
 								Next Step

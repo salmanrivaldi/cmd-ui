@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
-import MainLayout from "@/components/04-Templates/Layout/MainLayout";
+import MainLayout from "@/components/04-Templates/Layout/Auth/MainLayout";
 import "./globals.css";
 import StoreProvider from "@/providers/StoreProvider";
 
